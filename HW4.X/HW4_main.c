@@ -9,6 +9,9 @@
 #include <stdlib.h>
 #include<xc.h> // processor SFR definitions
 #include<sys/attribs.h> // __ISR macro
+#include "i2c_display.h"
+#include "i2c_master_int.h"
+#include "ASCII_Table.h"
 
 // DEVCFG0
 #pragma config DEBUG = OFF // no debugging
@@ -49,6 +52,8 @@
 #define USER PORTBbits.RB13
 
 int readADC(void);
+void OLED_ASCII(const char array[][5],char letter,int row,int col);
+void write_OLED_message(char *array,int row,int col);
 
 int main() {
 
@@ -100,12 +105,18 @@ int main() {
     AD1CHSbits.CH0SA = 0;
     AD1CON1bits.ADON = 1;
 
+    display_init();
+    
     int val;
+    char message[20];
+    int mesvalue=1337;
 
     while (1) {
     _CP0_SET_COUNT(0); // set core timer to 0, remember it counts at half the CPU clock
     LED1 = !LED1; // invert a pin
-
+    sprintf(message,"Hello world %d!",mesvalue);
+    write_OLED_message(message,32,28);
+    display_draw();
     // wait for half a second, setting LED brightness to pot angle while waiting
     while (_CP0_GET_COUNT() < 10000000) {
         val = readADC()*9999/1024;
@@ -136,4 +147,32 @@ int readADC(void) {
     }
     a = ADC1BUF0;
     return a;
+}
+
+void OLED_ASCII(const char array[][5],char letter,int row,int col){
+    int i,j,rowset;
+    rowset=row;
+    for(i=0;i<5;i++){
+        for(j=0;j<8;j++){
+            display_pixel_set(row,col,array[letter-0x20][i]>>j&0b1);
+            row++;
+        }
+        row=rowset;
+        col++;
+    }
+}
+
+void write_OLED_message(char *array,int row,int col){
+    int i=0,j=0,k=0,colspace=2,rowspace=2;
+    while(array[i]){
+        if(((5+colspace)*k+col)<120){
+            OLED_ASCII(ASCII,array[i],row+(rowspace+8)*j,(5+colspace)*k+col);
+            i++;
+            k++;
+        }
+        else{
+            j++;
+            k=0;
+        }
+    }
 }
