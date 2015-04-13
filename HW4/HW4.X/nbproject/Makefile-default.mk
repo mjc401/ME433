@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=i2c_master_int.c i2c_display.c HW4_main.c
+SOURCEFILES_QUOTED_IF_SPACED=i2c_master_int.c i2c_display.c HW4_main.c OLED_write.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/i2c_master_int.o ${OBJECTDIR}/i2c_display.o ${OBJECTDIR}/HW4_main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/i2c_master_int.o.d ${OBJECTDIR}/i2c_display.o.d ${OBJECTDIR}/HW4_main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/i2c_master_int.o ${OBJECTDIR}/i2c_display.o ${OBJECTDIR}/HW4_main.o ${OBJECTDIR}/OLED_write.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/i2c_master_int.o.d ${OBJECTDIR}/i2c_display.o.d ${OBJECTDIR}/HW4_main.o.d ${OBJECTDIR}/OLED_write.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/i2c_master_int.o ${OBJECTDIR}/i2c_display.o ${OBJECTDIR}/HW4_main.o
+OBJECTFILES=${OBJECTDIR}/i2c_master_int.o ${OBJECTDIR}/i2c_display.o ${OBJECTDIR}/HW4_main.o ${OBJECTDIR}/OLED_write.o
 
 # Source Files
-SOURCEFILES=i2c_master_int.c i2c_display.c HW4_main.c
+SOURCEFILES=i2c_master_int.c i2c_display.c HW4_main.c OLED_write.c
 
 
 CFLAGS=
@@ -112,6 +112,12 @@ ${OBJECTDIR}/HW4_main.o: HW4_main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/HW4_main.o 
 	@${FIXDEPS} "${OBJECTDIR}/HW4_main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/HW4_main.o.d" -o ${OBJECTDIR}/HW4_main.o HW4_main.c   
 	
+${OBJECTDIR}/OLED_write.o: OLED_write.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/OLED_write.o.d 
+	@${RM} ${OBJECTDIR}/OLED_write.o 
+	@${FIXDEPS} "${OBJECTDIR}/OLED_write.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/OLED_write.o.d" -o ${OBJECTDIR}/OLED_write.o OLED_write.c   
+	
 else
 ${OBJECTDIR}/i2c_master_int.o: i2c_master_int.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -130,6 +136,12 @@ ${OBJECTDIR}/HW4_main.o: HW4_main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/HW4_main.o.d 
 	@${RM} ${OBJECTDIR}/HW4_main.o 
 	@${FIXDEPS} "${OBJECTDIR}/HW4_main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/HW4_main.o.d" -o ${OBJECTDIR}/HW4_main.o HW4_main.c   
+	
+${OBJECTDIR}/OLED_write.o: OLED_write.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/OLED_write.o.d 
+	@${RM} ${OBJECTDIR}/OLED_write.o 
+	@${FIXDEPS} "${OBJECTDIR}/OLED_write.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/OLED_write.o.d" -o ${OBJECTDIR}/OLED_write.o OLED_write.c   
 	
 endif
 

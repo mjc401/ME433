@@ -12,6 +12,7 @@
 #include "i2c_display.h"
 #include "i2c_master_int.h"
 #include "ASCII_Table.h"
+#include "OLED_write.h"
 
 // DEVCFG0
 #pragma config DEBUG = OFF // no debugging
@@ -52,8 +53,6 @@
 #define USER PORTBbits.RB13
 
 int readADC(void);
-void OLED_ASCII(const char array[][5],char letter,int row,int col);
-void write_OLED_message(char *array,int row,int col);
 
 int main() {
 
@@ -104,11 +103,12 @@ int main() {
     AD1CON3bits.ADCS = 3;
     AD1CHSbits.CH0SA = 0;
     AD1CON1bits.ADON = 1;
+    
 
     display_init();
     
     int val;
-    char message[20];
+    char message[200];
     int mesvalue=1337;
 
     while (1) {
@@ -149,30 +149,3 @@ int readADC(void) {
     return a;
 }
 
-void OLED_ASCII(const char array[][5],char letter,int row,int col){
-    int i,j,rowset;
-    rowset=row;
-    for(i=0;i<5;i++){
-        for(j=0;j<8;j++){
-            display_pixel_set(row,col,array[letter-0x20][i]>>j&0b1);
-            row++;
-        }
-        row=rowset;
-        col++;
-    }
-}
-
-void write_OLED_message(char *array,int row,int col){
-    int i=0,j=0,k=0,colspace=2,rowspace=2;
-    while(array[i]){
-        if(((5+colspace)*k+col)<120){
-            OLED_ASCII(ASCII,array[i],row+(rowspace+8)*j,(5+colspace)*k+col);
-            i++;
-            k++;
-        }
-        else{
-            j++;
-            k=0;
-        }
-    }
-}
