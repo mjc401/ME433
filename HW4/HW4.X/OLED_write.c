@@ -34,3 +34,5 @@ void write_OLED_message(char *array,int row,int col){
         }
     }
 }
+
+

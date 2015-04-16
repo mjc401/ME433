@@ -4,10 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>i2c_master_int.h</itemPath>
-      <itemPath>i2c_display.h</itemPath>
-      <itemPath>OLED_write.h</itemPath>
       <itemPath>ASCII_Table.h</itemPath>
+      <itemPath>i2c_display.h</itemPath>
+      <itemPath>i2c_master_int.h</itemPath>
+      <itemPath>OLED_write.h</itemPath>
+      <itemPath>accel.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,10 +17,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>i2c_master_int.c</itemPath>
       <itemPath>i2c_display.c</itemPath>
-      <itemPath>HW4_main.c</itemPath>
+      <itemPath>i2c_master_int.c</itemPath>
       <itemPath>OLED_write.c</itemPath>
+      <itemPath>HW5_main.c</itemPath>
+      <itemPath>spi_accel.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
