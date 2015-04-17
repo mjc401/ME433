@@ -27,5 +27,5 @@ void acc_write_register(unsigned char reg, unsigned char data);
 void acc_setup();
 
 // accel to pixels
-//int accel_to_pixels(short accel);
+int accel_to_pixels(short accel);
 #endif

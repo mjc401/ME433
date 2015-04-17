@@ -7,7 +7,7 @@
 // SCK1 (B14)       -> SCL
 // some digital pin -> CS
 
-#define CS LATBbits.LATB4 // replace x with some digital pin
+#define CS LATBbits.LATB4 // CS on B4
 
 // send a byte via spi and return the response
 unsigned char spi_io(unsigned char o) {
@@ -47,6 +47,7 @@ void acc_write_register(unsigned char reg, unsigned char data) {
 void acc_setup() {
   TRISBbits.TRISB4 = 0; // set CS to output and digital if necessary
   CS = 1;
+  ANSELBbits.ANSB14 = 0;
   // select a pin for SDI1
   SDI1Rbits.SDI1R = 0b0001; //Set SDI1 on B5
 
@@ -60,11 +61,12 @@ void acc_setup() {
   // setup spi1
   SPI1CON = 0;              // turn off the spi module and reset it
   SPI1BUF;                  // clear the rx buffer by reading from it
-  SPI1BRG = 0x3;            // baud rate to 5MHz [SPI1BRG = (40000000/(2*desired))-1]
+  SPI1BRG = 0x12;            // baud rate to 5MHz [SPI1BRG = (40000000/(2*desired))-1]
   SPI1STATbits.SPIROV = 0;  // clear the overflow bit
   SPI1CONbits.CKE = 0;      // data changes when clock goes from active to inactive
-                          //    (high to low since CKP is 0)
+  SPI1CONbits.CKP = 1;                          //    (high to low since CKP is 0)
   SPI1CONbits.MSTEN = 1;    // master operation
+  SPI1CONbits.SMP = 0;
   SPI1CONbits.ON = 1;       // turn on spi
 
   // set the accelerometer data rate to 1600 Hz. Do not update until we read values
@@ -79,13 +81,13 @@ void acc_setup() {
   acc_write_register(CTRL2,0x0);
 }
 
-//int accel_to_pixels(short accel){
-//    int accelpixels;
-//    if (accel >= 0){
-//        accelpixels = accel/1024;
-//    }
-//    else{
-//        accelpixels = accel/1024;
-//    }
-//    return accelpixels;
-//}
+int accel_to_pixels(short accel){
+    int accelpixels;
+    if (accel >= 0){
+        accelpixels = accel/1024;
+    }
+    else{
+        accelpixels = accel/1024;
+    }
+    return accelpixels;
+}
