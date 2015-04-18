@@ -35,30 +35,3 @@ void write_OLED_message(char *array,int row,int col){
     }
 }
 
-void accel_pixels(int accelpixels,char axis){
-    int i;
-    if (axis == 'x'){
-        if (accelpixels > 0){
-            for (i=0;i<=accelpixels;i++){
-                display_pixel_set(32,64+i,1);
-            }
-        }
-        else if (accelpixels < 0){
-            for (i=0;i<=-accelpixels;i++){
-                display_pixel_set(32,63-i,1);
-            }
-        }
-    }
-    if (axis == 'y'){
-        if (accelpixels > 0){
-            for (i=0;i<=accelpixels;i++){
-                display_pixel_set(32+i,63,1);
-            }
-        }
-        else if (accelpixels < 0){
-            for (i=0;i<=-accelpixels;i++){
-                display_pixel_set(31-i,63,1);
-            }
-        }
-    }
-}

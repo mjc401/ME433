@@ -14,6 +14,7 @@
 #include "ASCII_Table.h"
 #include "OLED_write.h"
 #include "accel.h"
+#include "pic_accel.h"
 
 // DEVCFG0
 #pragma config DEBUG = OFF // no debugging
@@ -111,32 +112,15 @@ int main() {
 
     
     int val;
-    unsigned char who;
-    char message_accels[200];
-    char message_pixels[200];
-    int mesvalue=0;
-    short accels[3];
-    int xpix,ypix;
 
     while (1) {
     _CP0_SET_COUNT(0); // set core timer to 0, remember it counts at half the CPU clock
     LED1 = !LED1; // invert a pin
-    acc_read_register(OUT_X_L_A,(unsigned char *) accels, 6);
-    acc_read_register(WHO_AM_I,&who,1);
-    xpix = accel_to_pixels(accels[0]);
-    ypix = accel_to_pixels(accels[1]);
-    display_clear();
-    sprintf(message_pixels,"Xpix = %d  Ypix = %d",xpix,ypix);
-    write_OLED_message(message_pixels,0,0);
-    accel_pixels(xpix,'x');
-    accel_pixels(ypix,'y');
-    display_draw();
-    //mesvalue++;
     // wait for half a second, setting LED brightness to pot angle while waiting
     while (_CP0_GET_COUNT() < 10000000) {
         val = readADC()*9999/1024;
         OC1RS = val;
-
+        accelerometer_pixel_bars();
         if (USER == 1) {
             // nothing
         } else {

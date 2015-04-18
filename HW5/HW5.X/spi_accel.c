@@ -61,7 +61,7 @@ void acc_setup() {
   // setup spi1
   SPI1CON = 0;              // turn off the spi module and reset it
   SPI1BUF;                  // clear the rx buffer by reading from it
-  SPI1BRG = 0x12;            // baud rate to 5MHz [SPI1BRG = (40000000/(2*desired))-1]
+  SPI1BRG = 0x3;            // baud rate to 5MHz [SPI1BRG = (40000000/(2*desired))-1]
   SPI1STATbits.SPIROV = 0;  // clear the overflow bit
   SPI1CONbits.CKE = 0;      // data changes when clock goes from active to inactive
   SPI1CONbits.CKP = 1;                          //    (high to low since CKP is 0)
@@ -81,13 +81,3 @@ void acc_setup() {
   acc_write_register(CTRL2,0x0);
 }
 
-int accel_to_pixels(short accel){
-    int accelpixels;
-    if (accel >= 0){
-        accelpixels = accel/1024;
-    }
-    else{
-        accelpixels = accel/1024;
-    }
-    return accelpixels;
-}

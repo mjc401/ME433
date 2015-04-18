@@ -10,7 +10,6 @@
 
 void OLED_ASCII(const char array[][5],char letter,int row,int col);
 void write_OLED_message(char *array,int row,int col);
-void accel_pixels(int accelpixels,char axis);
 
 #endif	/* OLED_WRITE_H */
 

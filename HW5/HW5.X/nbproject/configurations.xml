@@ -22,6 +22,8 @@
       <itemPath>OLED_write.c</itemPath>
       <itemPath>HW5_main.c</itemPath>
       <itemPath>spi_accel.c</itemPath>
+      <itemPath>pic_accel.c</itemPath>
+      <itemPath>pic_accel.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
