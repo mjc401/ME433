@@ -19,7 +19,7 @@
       <itemPath>i2c_master_int.c</itemPath>
       <itemPath>i2c_display.c</itemPath>
       <itemPath>OLED_write.c</itemPath>
-      <itemPath>HW1_main.c</itemPath>
+      <itemPath>HW4_main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
