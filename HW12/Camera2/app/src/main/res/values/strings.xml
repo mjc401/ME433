@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">Android Camera Demo</string>
+    <string name="title">Choose a sensor:</string>
+    <string name="cameraLabel">Camera</string>
+    <string name="guide">Press back to return to this menu.</string>
+
+    <!-- activity labels -->
+    <string name="cameraActivityLabel">Camera | Android Sensor Demo</string>
+    <string name="microphoneActivityLabel">Microphone | Android Sensor Demo</string>
+
+    <string name="action_settings">Action Settings</string>
+
+</resources>
